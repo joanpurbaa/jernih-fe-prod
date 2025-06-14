@@ -139,7 +139,7 @@ export default function Home() {
 					{isAuthenticated && (
 						<h1 className="text-3xl text-zinc-800 font-bold">
 							Selamat datang{" "}
-							{JSON.parse(localStorage.getItem("user") || "{}")?.userData?.fullname} 👋
+							{JSON.parse(localStorage.getItem("user") || "{}")?.fullname} 👋
 						</h1>
 					)}
 					<div className="mt-5 relative w-full">
