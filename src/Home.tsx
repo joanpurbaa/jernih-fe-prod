@@ -277,10 +277,8 @@ export default function Home() {
 												{currentSlideData2?.title}
 											</h2>
 											<div className="relative max-h-[100px] overflow-hidden mask-fade">
-												<p className="text-blue-100 leading-relaxed">
-													{currentSlideData2?.description.length > 150
-														? `${currentSlideData2.description.slice(0, 150)}`
-														: currentSlideData2?.description}
+												<p className="text-blue-100 leading-relaxed line-clamp-4">
+													{currentSlideData2?.description}
 												</p>
 											</div>
 
