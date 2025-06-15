@@ -44,7 +44,7 @@ export default function Upload() {
 	const [documentation3, setDocumentation3] = useState<File>();
 	const [documentation3Preview, setDocumentation3Preview] = useState<string>("");
 	const [phoneNumber, setPhoneNumber] = useState<string>("");
-	const [donationUrl, setDonationUrl] = useState<string>("");
+	const [, setDonationUrl] = useState<string>("");
 
 	const [isProvinceOpen, setIsProvinceOpen] = useState(false);
 	const [isCityOpen, setIsCityOpen] = useState(false);
@@ -198,14 +198,14 @@ export default function Upload() {
 		setDistrictSearch("");
 	}
 
-	const token = localStorage.getItem("token");
+	const token = localStorage.getItem("token") || "";
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		const formData = new FormData();
 
-		formData.append("banner", banner);
+		formData.append("banner", banner || "");
 		formData.append("title", title);
 		formData.append("province", selectedProvinceName);
 		formData.append("city", selectedCityName);

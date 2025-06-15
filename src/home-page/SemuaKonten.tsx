@@ -2,11 +2,6 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
 
-interface PostImage {
-	postId: string;
-	filePath: string;
-}
-
 interface Post {
 	id: string;
 	userId: string;
@@ -16,7 +11,7 @@ interface Post {
 	district: string;
 	city: string;
 	province: string;
-	banner: PostImage[];
+	banner: string;
 }
 
 interface ApiResponse {
@@ -55,7 +50,7 @@ export default function SemuaKonten() {
 					/ Semua Konten
 				</p>
 				<section className="mt-5 grid grid-cols-12 text-zinc-800 gap-5">
-					{posts &&
+					{posts.length > 0 &&
 						posts.map((post, index) => (
 							<div
 								key={index}

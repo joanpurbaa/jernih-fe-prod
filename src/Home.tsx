@@ -273,7 +273,7 @@ export default function Home() {
 															: "opacity-0 scale-105"
 													}`}>
 													<img
-														src={slide.image}
+														src={slide.image as string}
 														alt={`Banner ${slide.id}`}
 														className="w-full h-full object-cover"
 														onError={(e) => {
@@ -318,7 +318,7 @@ export default function Home() {
 															: "opacity-0 scale-105"
 													}`}>
 													<img
-														src={slide.image}
+														src={slide.image as string}
 														alt={`Banner ${slide.id}`}
 														className="w-full h-full object-cover"
 														onError={(e) => {
