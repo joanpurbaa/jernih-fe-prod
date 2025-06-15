@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import axios from "axios";
 import PublicRoute from "./components/PublicRoute.tsx";
 import Upload from "./upload-page/upload.tsx";
+import SemuaKonten from "./home-page/SemuaKonten.tsx";
 
 axios.defaults.withCredentials = true;
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
 	{
 		path: "/upload",
 		element: <Upload />,
+	},
+	{
+		path: "/semua-konten",
+		element: <SemuaKonten />,
 	},
 ]);
 

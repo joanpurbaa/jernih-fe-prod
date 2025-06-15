@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 
 export default function Header() {
 	const { isAuthenticated, logout } = useAuth();
-
+  
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -20,7 +20,7 @@ export default function Header() {
 					{isAuthenticated ? (
 						<div className="flex gap-3 items-center">
 							<a href="/upload">
-								<div className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-3 flex items-center justify-center cursor-pointer">
+								<div className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 xl:p-3 flex items-center justify-center cursor-pointer">
 									<Plus className="w-6 h-6" />
 								</div>
 							</a>

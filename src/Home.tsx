@@ -3,6 +3,7 @@ import { BadgeAlert, BookMarked, DropletOff, ShieldCheck } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useAuth } from "./contexts/AuthContext";
+import axios from "axios";
 
 interface PostImage {
 	postId: string;
@@ -18,7 +19,7 @@ interface Post {
 	district: string;
 	city: string;
 	province: string;
-	postsImage: PostImage[];
+	banner: PostImage[];
 }
 
 interface ApiResponse {
@@ -29,6 +30,8 @@ interface ApiResponse {
 }
 
 export default function Home() {
+	const API_BASE = import.meta.env.VITE_API_BASE;
+
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [currentSlide2, setCurrentSlide2] = useState(0);
 	const [posts, setPosts] = useState<Post[]>([]);
@@ -46,8 +49,8 @@ export default function Home() {
 		const fetchPosts = async () => {
 			try {
 				setLoading(true);
-				const response = await fetch("https://jernih-be.vercel.app/v1/posts");
-				const data: ApiResponse = await response.json();
+				const response = await axios.get(API_BASE + "/posts");
+				const data: ApiResponse = await response.data;
 
 				if (data.success && data.responseObject) {
 					setPosts(data.responseObject);
@@ -67,8 +70,8 @@ export default function Home() {
 	const transformedSlides = posts.map((post) => ({
 		id: post.id,
 		image:
-			post.postsImage && post.postsImage.length > 0
-				? post.postsImage[0].filePath
+			post.banner && post.banner.length > 0
+				? post.banner
 				: "/placeholder-image.jpg",
 		title: post.title,
 		description: post.description,
@@ -83,7 +86,7 @@ export default function Home() {
 
 	const slides2 =
 		transformedSlides.length > 0
-			? transformedSlides
+			? transformedSlides.slice(0, 3)
 			: [
 					{
 						id: "1",
@@ -100,6 +103,8 @@ export default function Home() {
 						],
 					},
 			  ];
+
+	const hasMoreThanThreePosts = transformedSlides.length > 3;
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -139,7 +144,7 @@ export default function Home() {
 					{isAuthenticated && (
 						<h1 className="text-3xl text-zinc-800 font-bold">
 							Selamat datang{" "}
-							{JSON.parse(localStorage.getItem("user") || "{}")?.fullname} 👋
+							{JSON.parse(localStorage.getItem("user") || "{}")?.userData?.fullname} 👋
 						</h1>
 					)}
 					<div className="mt-5 relative w-full">
@@ -223,8 +228,15 @@ export default function Home() {
 						</a>
 					</div>
 				</section>
-				<section className="px-2 sm:px-7 xl:px-[200px] 2xl:px-[350px]">
-					<div className="relative w-full max-w-7xl mx-auto">
+				<section className="flex flex-col items-end px-2 sm:px-7 xl:px-[200px] 2xl:px-[350px]">
+					{hasMoreThanThreePosts && (
+						<a
+							className="text-lg font-semibold text-white bg-blue-500 hover:bg-blue-700 px-4 py-3 rounded-md"
+							href="/semua-konten">
+							Lihat lebih
+						</a>
+					)}
+					<div className="mt-5 relative w-full max-w-7xl mx-auto">
 						{loading && (
 							<div className="relative h-64 sm:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-r from-blue-800 to-blue-600 flex items-center justify-center">
 								<div className="text-white text-center">
@@ -250,8 +262,8 @@ export default function Home() {
 						{!loading && !error && slides2.length > 0 && (
 							<>
 								<div className="relative h-max overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-r from-blue-800 to-blue-600">
-									<div className="hidden lg:flex flex-row h-full">
-										<div className="w-1/2 relative overflow-hidden">
+									<div className="hidden h-[400px] lg:flex flex-row">
+										<div className="w-1/2 h-full relative overflow-hidden">
 											{slides2.map((slide, index) => (
 												<div
 													key={slide.id}
@@ -281,7 +293,6 @@ export default function Home() {
 													{currentSlideData2?.description}
 												</p>
 											</div>
-
 											<p className="text-blue-200 text-sm">{currentSlideData2?.contact}</p>
 											<div className="flex space-x-4">
 												{currentSlideData2?.buttons?.map((button, index) => (
@@ -341,7 +352,6 @@ export default function Home() {
 										</div>
 									</div>
 								</div>
-
 								<div className="flex justify-center mt-6 space-x-3">
 									{slides2.map((_, index) => (
 										<button
@@ -357,7 +367,6 @@ export default function Home() {
 								</div>
 							</>
 						)}
-
 						{!loading && !error && slides2.length === 0 && (
 							<div className="relative h-64 overflow-hidden rounded-2xl shadow-2xl bg-gray-500 flex items-center justify-center">
 								<div className="text-white text-center">

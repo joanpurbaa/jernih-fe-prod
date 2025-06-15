@@ -25,6 +25,16 @@ export default function ModalPopUp({ open, close }: ModalPopUpProps) {
 					<tbody>
 						<tr>
 							<td className="text-xs sm:text-base text-center border border-gray-400 p-2">
+								Banner
+							</td>
+							<td className="text-zinc-500 text-xs sm:text-base text-center border border-gray-400 p-2">
+								<i>
+									1 file foto permasalahan air yang kamu alami yang akan menjadi banner
+								</i>
+							</td>
+						</tr>
+						<tr>
+							<td className="text-xs sm:text-base text-center border border-gray-400 p-2">
 								Judul
 							</td>
 							<td className="text-zinc-500 text-xs sm:text-base text-center border border-gray-400 p-2">
@@ -99,18 +109,22 @@ export default function ModalPopUp({ open, close }: ModalPopUpProps) {
 								Dokumentasi 1 - 3
 							</td>
 							<td className="text-zinc-500 text-xs sm:text-base text-center border border-gray-400 p-2">
-								<i>3 foto permasalahan air yang kamu alami</i>
+								<i>3 file foto permasalahan air yang kamu alami</i>
 							</td>
 						</tr>
 						<tr>
 							<td className="text-xs sm:text-base text-center border border-gray-400 p-2">
-								Tautan Narahubung
+								Narahubung
 							</td>
 							<td className="text-zinc-500 text-xs sm:text-base text-center border border-gray-400 p-2">
 								<i>
-									Tautan untuk menghubungi kamu
+									Untuk menghubungi kamu ke Whats App
 									<br />
-									<span className="text-red-400">*https://wa.me/68*********</span>
+									<span className="text-red-400">
+										*dengan format 628 didepan, tanpa tanda +(plus/tambah)
+									</span>
+									<br />
+									<span className="text-red-400">*628123456789</span>
 								</i>
 							</td>
 						</tr>
