@@ -15,6 +15,7 @@ import axios from "axios";
 import PublicRoute from "./components/PublicRoute.tsx";
 import Upload from "./upload-page/upload.tsx";
 import SemuaKonten from "./home-page/SemuaKonten.tsx";
+import Profil from "./profil-page/profil.tsx";
 
 axios.defaults.withCredentials = true;
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
 	{
 		path: "/semua-konten",
 		element: <SemuaKonten />,
+	},
+	{
+		path: "/profil/:slug",
+		element: <Profil />,
 	},
 ]);
 

@@ -1,15 +1,13 @@
 import { Link } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
-import { Plus } from "lucide-react";
+import { LogOut, Plus, User } from "lucide-react";
 
 export default function Header() {
 	const { isAuthenticated, logout } = useAuth();
-  
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
 
+	const handleSubmit = () => {
 		logout();
-		location.reload();
+		window.location.replace("/");
 	};
 
 	return (
@@ -24,12 +22,20 @@ export default function Header() {
 									<Plus className="w-6 h-6" />
 								</div>
 							</a>
+							<a
+								href={`/profil/${
+									JSON.parse(localStorage.getItem("user") || "{}")?.id
+								}`}>
+								<div className="bg-blue-500 hover:bg-blue-600 text-white rounded-md p-2 xl:p-3 flex items-center justify-center cursor-pointer">
+									<User className="w-6 h-6" />
+								</div>
+							</a>
 							<li>
-								<form onSubmit={handleSubmit}>
-									<button className="cursor-pointer bg-red-400 hover:bg-red-600 text-white text-xs sm:text-base font-semibold py-3 px-4 rounded-md">
-										Keluar
-									</button>
-								</form>
+								<div
+									onClick={handleSubmit}
+									className="bg-red-400 hover:bg-red-500 text-white rounded-md p-2 xl:p-3 flex items-center justify-center cursor-pointer">
+									<LogOut className="w-6 h-6" />
+								</div>
 							</li>
 						</div>
 					) : (

@@ -142,9 +142,9 @@ export default function Home() {
 				<Header />
 				<section className="pt-20 sm:pt-36 px-2 sm:px-7 xl:px-[200px] 2xl:px-[350px]">
 					{isAuthenticated && (
-						<h1 className="text-3xl text-zinc-800 font-bold">
+						<h1 className="text-lg sm:text-3xl text-zinc-800 font-bold">
 							Selamat datang{" "}
-							{JSON.parse(localStorage.getItem("user") || "{}")?.userData?.fullname} 👋
+							{JSON.parse(localStorage.getItem("user") || "{}")?.fullname} 👋
 						</h1>
 					)}
 					<div className="mt-5 relative w-full">

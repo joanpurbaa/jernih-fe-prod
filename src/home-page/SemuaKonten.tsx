@@ -69,7 +69,7 @@ export default function SemuaKonten() {
 										{post.province}, {post.city}, {post.district}
 									</p>
 									<a
-										href=""
+										href={`/post/${post.id}`}
 										className="mt-3 w-full text-center text-blue-500 text-xs sm:text-base font-semibold bg-white hover:bg-gray-200 p-3 rounded-md">
 										Lihat Detail
 									</a>
