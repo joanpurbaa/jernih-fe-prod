@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { CircleAlert } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Post {
 	id: string;
@@ -74,7 +75,12 @@ export default function Profil() {
 						</p>
 					</>
 				)}
-				<section className="mt-10 grid grid-cols-12 text-zinc-800 gap-5">
+				<section className="my-5">
+					<p className="text-sm sm:text-xl">
+						<Link to="/">Beranda</Link> / Profil
+					</p>
+				</section>
+				<section className="mt-5 grid grid-cols-12 text-zinc-800 gap-5">
 					{posts.length > 0 &&
 						posts.map((post, index) => (
 							<div
@@ -85,7 +91,7 @@ export default function Profil() {
 									src={post.banner}
 									alt=""
 								/>
-								<div className="flex flex-col p-5">
+								<div className="flex flex-col p-5 justify-center">
 									<h1 className="text-sm sm:text-lg font-semibold">{post.title}</h1>
 									<p className="mt-3 mb-7 text-xs sm:text-base line-clamp-3 mask-fade">
 										{post.description}
@@ -98,13 +104,20 @@ export default function Profil() {
 										className="mt-3 w-full text-center text-blue-500 text-xs sm:text-base font-semibold bg-white hover:bg-gray-200 p-3 rounded-md">
 										Lihat Detail
 									</a>
-									<div
-										onClick={() => {
-											setDangerPopUp(true);
-											setTargetId(post.id);
-										}}
-										className="cursor-pointer mt-3 w-full text-center text-white text-xs sm:text-base font-semibold bg-red-400 hover:bg-red-300 p-3 rounded-md">
-										Hapus
+									<div className="flex gap-3">
+										<a
+											href={`/edit/${post.id}`}
+											className="mt-3 w-full text-center text-blu-500 text-xs sm:text-base font-semibold bg-green-400 hover:bg-green-300 p-3 rounded-md">
+											Edit
+										</a>
+										<div
+											onClick={() => {
+												setDangerPopUp(true);
+												setTargetId(post.id);
+											}}
+											className="cursor-pointer mt-3 w-full text-center text-white text-xs sm:text-base font-semibold bg-red-400 hover:bg-red-300 p-3 rounded-md">
+											Hapus
+										</div>
 									</div>
 								</div>
 							</div>

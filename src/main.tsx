@@ -16,6 +16,7 @@ import PublicRoute from "./components/PublicRoute.tsx";
 import Upload from "./upload-page/upload.tsx";
 import SemuaKonten from "./home-page/SemuaKonten.tsx";
 import Profil from "./profil-page/profil.tsx";
+import Update from "./update-page/update.tsx";
 
 axios.defaults.withCredentials = true;
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
 	{
 		path: "/profil/:slug",
 		element: <Profil />,
+	},
+	{
+		path: "/edit/:slug",
+		element: <Update />,
 	},
 ]);
 

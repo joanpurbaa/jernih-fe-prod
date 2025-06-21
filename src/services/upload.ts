@@ -5,15 +5,19 @@ const API_BASE = import.meta.env.VITE_API_BASE;
 export const uploadApi = async ({
 	token,
 	formData,
+  id
 }: {
 	token: string;
 	formData: FormData;
+  id: string;
 }) => {
-	const res = await axios.post(`${API_BASE}/posts`, formData, {
+	formData.forEach((data) => console.log(data));
+
+	const res = await axios.put(`${API_BASE}/posts/${id}`, formData, {
 		headers: {
 			authorization: token,
 		},
 	});
 
-	return res.data;
+	return res;
 };
