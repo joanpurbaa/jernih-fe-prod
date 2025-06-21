@@ -54,7 +54,11 @@ export default function Profil() {
 	}, []);
 
 	const handleDelete = async () => {
-		await axios.delete(API_BASE + "/posts/" + targetId);
+		await axios.delete(API_BASE + "/posts/" + targetId, {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    });
 		location.reload();
 	};
 

@@ -98,7 +98,7 @@ export default function Upload() {
 		!documentation2ErrorType &&
 		documentation3 &&
 		!documentation3ErrorType &&
-		phoneNumber;
+		phoneNumber && donationLink;
 
 	const filteredProvinces = provinces.filter((prov: Province) =>
 		prov.name.toLowerCase().includes(provinceSearch.toLowerCase())

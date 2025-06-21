@@ -13,10 +13,10 @@ import { citiesByProvince } from "../data/citiesByProvince";
 import { districtsByCity } from "../data/districtsByCity";
 import ModalPopUp from "../components/ModalPopUp";
 import { useMutation } from "@tanstack/react-query";
-import { uploadApi } from "../services/upload";
 import type { AxiosError } from "axios";
 import { useParams } from "react-router";
 import axios from "axios";
+import { updateApi } from "../services/update";
 
 interface Province {
 	provinces_id: number;
@@ -149,7 +149,7 @@ export default function Update() {
 		!documentation2ErrorType &&
 		(documentation3 || data?.postsImagesData[2]) &&
 		!documentation3ErrorType &&
-		phoneNumber;
+		phoneNumber && donationLink;
 
 	const filteredProvinces = provinces.filter((prov: Province) =>
 		prov.name.toLowerCase().includes(provinceSearch.toLowerCase())
@@ -176,7 +176,7 @@ export default function Update() {
 	const navigate = useNavigate();
 
 	const mutation = useMutation({
-		mutationFn: uploadApi,
+		mutationFn: updateApi,
 		onSuccess: () => {
 			navigate("/post/" + slug);
 		},
@@ -688,10 +688,10 @@ export default function Update() {
 												alt=""
 											/>
 											<div
-												onClick={() => {
+												onClick={async () => {
 													setIsReplacingDoc1(true);
 
-													axios.delete(
+													await axios.delete(
 														"https://jernih-be.vercel.app/v1/posts-image/" +
 															slug +
 															"/" +
